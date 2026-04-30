@@ -1,0 +1,39 @@
+version: '3'
+
+tasks:
+  build:
+    desc: Build ddg CLI
+    cmds:
+      - go build -o bin/ddg -ldflags "-X main.version={{.VERSION}}" .
+    vars:
+      VERSION:
+        sh: cat VERSION 2>/dev/null || echo "dev"
+
+  install:
+    desc: Install ddg CLI to ~/.local/bin
+    deps: [build]
+    cmds:
+      - mkdir -p ~/.local/bin
+      - cp bin/ddg ~/.local/bin/ddg
+      - chmod +x ~/.local/bin/ddg
+      - echo "Installed to ~/.local/bin/ddg (ensure ~/.local/bin is in PATH)"
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test -v ./...
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf bin/
+
+  fmt:
+    desc: Format code
+    cmds:
+      - go fmt ./...
+
+  lint:
+    desc: Run linter
+    cmds:
+      - golangci-lint run
