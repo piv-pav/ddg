@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1] - 2026-04-30
+
+### Fixed
+- Improved fallback for JavaScript-heavy sites in `read` command
+- Now uses extraction ratio check (HTML size >10KB + <2% content extracted) instead of absolute length
+- Prevents false positives on small valid responses (e.g., ifconfig.me)
+
 ## [0.1.0] - 2026-04-30
 
 ### Added

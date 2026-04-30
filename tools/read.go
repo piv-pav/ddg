@@ -102,5 +102,16 @@ func fetchAndConvert(ctx context.Context, targetURL string) (string, error) {
 		return "", fmt.Errorf("markdown conversion failed: %w", err)
 	}
 
+	// If readability extracted very little compared to input (< 2% ratio),
+	// it likely failed to find content. Fall back to raw HTML conversion.
+	// This handles JS-heavy sites while preserving small valid responses.
+	extractionRatio := float64(len(article.Content)) / float64(len(body))
+	if len(body) > 10000 && extractionRatio < 0.02 {
+		markdownContent, err = md.ConvertString(string(body))
+		if err != nil {
+			return "", fmt.Errorf("markdown conversion (fallback) failed: %w", err)
+		}
+	}
+
 	return markdownContent, nil
 }
