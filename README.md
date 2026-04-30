@@ -1,4 +1,4 @@
-# ddg
+# ddg-cli
 
 DuckDuckGo search and web fetch CLI tool.
 
