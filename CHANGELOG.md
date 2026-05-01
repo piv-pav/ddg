@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.0] - 2026-05-01
+
+### Changed
+- Switched from go-task to just (replaced Taskfile.yml with justfile)
+
 ## [0.1.1] - 2026-04-30
 
 ### Fixed
