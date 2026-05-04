@@ -10,8 +10,8 @@ DuckDuckGo search and web fetch CLI tool.
 ## Installation
 
 ```bash
-task build
-task install
+just build
+just install
 ```
 
 ## Usage
@@ -34,13 +34,13 @@ ddg read https://example.com/article
 
 ```bash
 # Build binary
-task build
+just build
 
 # Install to ~/.local/bin
-task install
+just install
 
 # Clean build artifacts
-task clean
+just clean
 ```
 
 ## Dependencies
