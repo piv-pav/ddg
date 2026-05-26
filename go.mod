@@ -3,9 +3,9 @@ module github.com/ppivtorak/ddg
 go 1.26.2
 
 require (
+	codeberg.org/readeck/go-readability/v2 v2.1.0
 	github.com/JohannesKaufmann/html-to-markdown/v2 v2.2.2
 	github.com/PuerkitoBio/goquery v1.10.1
-	github.com/go-shiori/go-readability v0.0.0-20251205110129-5db1dc9836f0
 	github.com/spf13/cobra v1.10.2
 )
 
@@ -17,6 +17,6 @@ require (
 	github.com/gogs/chardet v0.0.0-20211120154057-b7413eaefb8f // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.9 // indirect
-	golang.org/x/net v0.35.0 // indirect
-	golang.org/x/text v0.22.0 // indirect
+	golang.org/x/net v0.41.0 // indirect
+	golang.org/x/text v0.26.0 // indirect
 )

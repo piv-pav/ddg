@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-shiori/go-readability"
+	"codeberg.org/readeck/go-readability/v2"
 	md "github.com/JohannesKaufmann/html-to-markdown/v2"
 	"github.com/spf13/cobra"
 )
@@ -96,8 +96,20 @@ func fetchAndConvert(ctx context.Context, targetURL string) (string, error) {
 		return markdownContent, nil
 	}
 
+	// Get cleaned HTML content from v2 API
+	var htmlBuilder strings.Builder
+	if err := article.RenderHTML(&htmlBuilder); err != nil {
+		// If render fails, convert raw HTML directly
+		markdownContent, err := md.ConvertString(string(body))
+		if err != nil {
+			return "", fmt.Errorf("markdown conversion failed: %w", err)
+		}
+		return markdownContent, nil
+	}
+	htmlContent := htmlBuilder.String()
+
 	// Convert cleaned content to markdown
-	markdownContent, err := md.ConvertString(article.Content)
+	markdownContent, err := md.ConvertString(htmlContent)
 	if err != nil {
 		return "", fmt.Errorf("markdown conversion failed: %w", err)
 	}
@@ -105,7 +117,7 @@ func fetchAndConvert(ctx context.Context, targetURL string) (string, error) {
 	// If readability extracted very little compared to input (< 2% ratio),
 	// it likely failed to find content. Fall back to raw HTML conversion.
 	// This handles JS-heavy sites while preserving small valid responses.
-	extractionRatio := float64(len(article.Content)) / float64(len(body))
+	extractionRatio := float64(len(htmlContent)) / float64(len(body))
 	if len(body) > 10000 && extractionRatio < 0.02 {
 		markdownContent, err = md.ConvertString(string(body))
 		if err != nil {
