@@ -1,4 +1,4 @@
-module github.com/ppivtorak/ddg
+module codeberg.org/pivpav/ddg-cli
 
 go 1.26.2
 

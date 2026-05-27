@@ -16,10 +16,11 @@ import (
 
 func ReadCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "read [url]",
-		Short: "Fetch and convert URL to markdown",
-		Long:  "Fetch webpage, clean with go-readability, convert to markdown",
-		Args:  cobra.ExactArgs(1),
+		Use:     "read [url]",
+		Aliases: []string{"fetch"},
+		Short:   "Fetch and convert URL to markdown",
+		Long:    "Fetch webpage, clean with go-readability, convert to markdown",
+		Args:    cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			targetURL := args[0]
 

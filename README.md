@@ -10,6 +10,14 @@ DuckDuckGo search and web fetch CLI tool.
 ## Installation
 
 ```bash
+go install codeberg.org/pivpav/ddg-cli@latest
+```
+
+Or build from source:
+
+```bash
+git clone https://codeberg.org/pivpav/ddg-cli.git
+cd ddg-cli
 just build
 just install
 ```
@@ -47,5 +55,5 @@ just clean
 
 - github.com/spf13/cobra - CLI framework
 - github.com/PuerkitoBio/goquery - HTML parsing for search results
-- github.com/go-shiori/go-readability - Article extraction and cleaning
+- codeberg.org/readeck/go-readability/v2 - Article extraction and cleaning
 - github.com/JohannesKaufmann/html-to-markdown/v2 - HTML to Markdown conversion
