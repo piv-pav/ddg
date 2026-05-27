@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ppivtorak/ddg/tools"
+	"codeberg.org/pivpav/ddg-cli/tools"
 	"github.com/spf13/cobra"
 )
 
