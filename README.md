@@ -30,12 +30,18 @@ just install
 ddg search "golang cobra" --limit 5
 # or short
 ddg search "golang cobra" -l 5
+
+# JSON output
+ddg search "golang cobra" --json
 ```
 
 ### Fetch and convert URL to markdown
 
 ```bash
 ddg read https://example.com/article
+
+# JSON output
+ddg read https://example.com/article --json
 ```
 
 ## Build

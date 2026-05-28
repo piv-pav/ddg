@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.2] - 2026-05-28
+
+### Added
+- `--json` flag for search and read commands (machine-readable output)
+- Shared HTTP client with retry logic (`tools/http.go`)
+- URL validation helper
+
+### Changed
+- Refactored HTTP client setup into shared module
+- Both commands now use `cmd.Context()` for proper signal handling
+
 ## [0.2.0] - 2026-05-01
 
 ### Changed

@@ -18,7 +18,7 @@ Search DuckDuckGo and fetch web content as clean markdown.
 ### Search DuckDuckGo
 
 ```bash
-ddg search "query" [-l limit]
+ddg search "query" [-l limit] [--json]
 ```
 
 Returns: Title, description, and URL for each result (default: 10 results)
@@ -26,12 +26,13 @@ Returns: Title, description, and URL for each result (default: 10 results)
 **Example:**
 ```bash
 ddg search "golang error handling best practices" -l 5
+ddg search "query" --json  # machine-readable output
 ```
 
 ### Fetch URL as Markdown
 
 ```bash
-ddg read URL
+ddg read URL [--json]
 ```
 
 Fetches page, cleans with go-readability, converts to markdown.
@@ -39,11 +40,11 @@ Fetches page, cleans with go-readability, converts to markdown.
 **Example:**
 ```bash
 ddg read https://go.dev/doc/effective_go
-```
+ddg read https://example.com --json  # returns {url, content}
 
 ## Output Format
 
-**Search:** Plain text, one result per block:
+**Search (plain):** One result per block:
 ```
 Title
 Description
@@ -51,7 +52,11 @@ URL
 
 ```
 
-**Read:** Clean markdown content extracted from page.
+**Search (--json):** Array of `{title, info, url}` objects.
+
+**Read (plain):** Clean markdown content.
+
+**Read (--json):** `{url, content}` object.
 
 ## Notes
 
