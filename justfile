@@ -3,12 +3,12 @@ build:
     export VERSION=$(cat VERSION 2>/dev/null || echo "dev") && \
     go build -o bin/ddg -ldflags "-X main.version=$VERSION" .
 
-# Install ddg CLI to ~/.local/bin
+# Install ddg CLI to ~/go/bin
 install: build
-    mkdir -p ~/.local/bin
-    cp bin/ddg ~/.local/bin/ddg
-    chmod +x ~/.local/bin/ddg
-    echo "Installed to ~/.local/bin/ddg (ensure ~/.local/bin is in PATH)"
+    mkdir -p ~/go/bin
+    cp bin/ddg ~/go/bin/ddg
+    chmod +x ~/go/bin/ddg
+    echo "Installed to ~/go/bin/ddg"
 
 # Run tests
 test:

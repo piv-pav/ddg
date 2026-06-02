@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.2] - 2026-06-02
+
+### Changed
+- `just install` now installs to `~/go/bin` instead of `~/.local/bin`
+
 ## [0.3.1] - 2026-06-02
 
 ### Changed
