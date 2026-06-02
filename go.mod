@@ -1,4 +1,4 @@
-module codeberg.org/pivpav/ddg-cli
+module codeberg.org/pivpav/ddg
 
 go 1.26.2
 

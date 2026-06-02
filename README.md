@@ -1,4 +1,4 @@
-# ddg-cli
+# ddg
 
 DuckDuckGo search and web fetch CLI tool.
 
@@ -10,14 +10,14 @@ DuckDuckGo search and web fetch CLI tool.
 ## Installation
 
 ```bash
-go install codeberg.org/pivpav/ddg-cli@latest
+go install codeberg.org/pivpav/ddg@latest
 ```
 
 Or build from source:
 
 ```bash
-git clone https://codeberg.org/pivpav/ddg-cli.git
-cd ddg-cli
+git clone https://codeberg.org/pivpav/ddg.git
+cd ddg
 just build
 just install
 ```

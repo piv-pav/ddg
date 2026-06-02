@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1] - 2026-06-02
+
+### Changed
+- Module renamed from `ddg-cli` to `ddg` for simpler `go install`
+- Version detected from Go build info when installed via `go install`
+- Repository renamed on Codeberg from `ddg-cli` to `ddg`
+
 ## [0.3.0] - 2026-06-02
 
 ### Changed

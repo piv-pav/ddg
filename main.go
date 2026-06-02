@@ -3,12 +3,19 @@ package main
 import (
 	"fmt"
 	"os"
+	"runtime/debug"
 
-	"codeberg.org/pivpav/ddg-cli/tools"
+	"codeberg.org/pivpav/ddg/tools"
 	"github.com/spf13/cobra"
 )
 
 var version = "dev"
+
+func init() {
+	if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "" && info.Main.Version != "(devel)" {
+		version = info.Main.Version
+	}
+}
 
 func main() {
 	rootCmd := &cobra.Command{
