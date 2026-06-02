@@ -43,8 +43,11 @@ func SearchCmd() *cobra.Command {
 				return printJSON(results)
 			}
 
-			for _, r := range results {
-				fmt.Printf("%s\n%s\n%s\n\n", r.Title, r.Info, r.URL)
+			for i, r := range results {
+				if i > 0 {
+					fmt.Printf("\n---\n\n")
+				}
+				fmt.Printf("# [%s](%s)\n\n%s\n", r.Title, r.URL, r.Info)
 			}
 
 			return nil

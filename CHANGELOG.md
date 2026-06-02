@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0] - 2026-06-02
+
+### Changed
+- Search results now output as proper Markdown with clickable title links
+- Titles formatted as `# [Title](URL)` for better readability
+- Horizontal rules (`---`) separate search results
+
 ## [0.2.2] - 2026-05-28
 
 ### Added
