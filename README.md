@@ -10,13 +10,13 @@ DuckDuckGo search and web fetch CLI tool.
 ## Installation
 
 ```bash
-go install codeberg.org/pivpav/ddg@latest
+go install github.com/piv-pav/ddg@latest
 ```
 
 Or build from source:
 
 ```bash
-git clone https://codeberg.org/pivpav/ddg.git
+git clone https://github.com/piv-pav/ddg.git
 cd ddg
 just build
 just install

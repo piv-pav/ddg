@@ -1,4 +1,4 @@
-module codeberg.org/pivpav/ddg
+module github.com/piv-pav/ddg
 
 go 1.26.2
 
