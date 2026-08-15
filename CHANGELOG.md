@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5.1] - 2026-08-16
+
+### Added
+- `ddg upgrade` command: checks the latest GitHub tag and self-upgrades via `go install`
+- Consistent `v`-prefixed version string (`v<version>-dev` for local builds)
+
+## [0.5.0] - 2026-08-16
+
+### Added
+- YouTube transcript support: `ddg read <youtube-url>` returns channel, title, duration, date, and a native-language transcript
+- SponsorBlock filtering: sponsor/selfpromo/interaction/intro/outro/preview/music_offtopic segments removed and marked inline as `[removed: <category>]`
+- Native-language detection via the auto-generated (asr) caption track (correct even for multi-audio dubbed videos)
+- URL shapes: `watch?v=`, `youtu.be`, `/shorts/`, `/live/`, `/embed/`, `m.youtube.com`, `music.youtube.com`
+
+## [0.4.0] - 2026-08-16
+
+### Added
+- MCP server support: `--mcp` (stdio) and `--mcp-http <port>` (StreamableHTTP)
+- `web_search` tool (structured results with explicit title/url/info)
+- `web_read` tool (markdown conversion, reuses the read path)
+
 ## [0.3.2] - 2026-06-02
 
 ### Changed

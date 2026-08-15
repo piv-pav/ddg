@@ -1,7 +1,7 @@
 # Build ddg CLI
 build:
     export VERSION=$(cat VERSION 2>/dev/null || echo "dev") && \
-    go build -o bin/ddg -ldflags "-X main.version=$VERSION" .
+    go build -o bin/ddg -ldflags "-X main.version=v$VERSION-dev" .
 
 # Install ddg CLI to ~/go/bin
 install: build

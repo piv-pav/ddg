@@ -23,9 +23,26 @@ func ReadCmd() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			targetURL := args[0]
 
-			content, err := fetchAndConvert(cmd.Context(), targetURL)
+			if jsonOutput {
+				if videoID, ok := parseYouTubeID(targetURL); ok {
+					info, err := fetchYouTube(cmd.Context(), videoID)
+					if err != nil {
+						return fmt.Errorf("could not retrieve transcript: %w", err)
+					}
+					return printJSON(youtubeJSON{
+						URL:        targetURL,
+						Title:      info.Title,
+						Channel:    info.Channel,
+						Duration:   info.Duration,
+						Date:       info.Date,
+						Transcript: info.Transcript,
+					})
+				}
+			}
+
+			content, err := readURL(cmd.Context(), targetURL)
 			if err != nil {
-				return fmt.Errorf("fetch failed: %w", err)
+				return err
 			}
 
 			if jsonOutput {
@@ -40,6 +57,25 @@ func ReadCmd() *cobra.Command {
 	cmd.Flags().BoolVar(&jsonOutput, "json", false, "Output as JSON")
 
 	return cmd
+}
+
+// readURL returns the markdown for a URL: YouTube videos use the transcript
+// path, everything else uses readability conversion. Shared by the CLI and the
+// MCP server.
+func readURL(ctx context.Context, targetURL string) (string, error) {
+	if videoID, ok := parseYouTubeID(targetURL); ok {
+		info, err := fetchYouTube(ctx, videoID)
+		if err != nil {
+			return "", fmt.Errorf("could not retrieve transcript: %w", err)
+		}
+		return formatYouTubeMarkdown(info), nil
+	}
+
+	content, err := fetchAndConvert(ctx, targetURL)
+	if err != nil {
+		return "", fmt.Errorf("fetch failed: %w", err)
+	}
+	return content, nil
 }
 
 func fetchAndConvert(ctx context.Context, targetURL string) (string, error) {
