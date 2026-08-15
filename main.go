@@ -5,7 +5,7 @@ import (
 	"os"
 	"runtime/debug"
 
-	"codeberg.org/pivpav/ddg/tools"
+	"github.com/piv-pav/ddg/tools"
 	"github.com/spf13/cobra"
 )
 
