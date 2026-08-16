@@ -43,10 +43,12 @@ func main() {
 				if !strings.HasPrefix(addr, ":") {
 					addr = ":" + addr
 				}
+				fmt.Fprintf(os.Stderr, "ddg %s: MCP server over http on %s\n", version, addr)
 				handler := mcp.NewStreamableHTTPHandler(func(*http.Request) *mcp.Server { return server }, nil)
 				return http.ListenAndServe(addr, handler)
 			}
 
+			fmt.Fprintf(os.Stderr, "ddg %s: MCP server over stdio\n", version)
 			return server.Run(cmd.Context(), &mcp.StdioTransport{})
 		},
 	}

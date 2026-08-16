@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.2] - 2026-08-16
+
+### Added
+- MCP server startup logging: `--mcp` and `--mcp-http` print the binary name, version, and transport (plus the listen address for HTTP) to stderr
+
 ## [0.5.1] - 2026-08-16
 
 ### Added

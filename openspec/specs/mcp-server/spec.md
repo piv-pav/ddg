@@ -43,3 +43,18 @@ The MCP tools SHALL call the same underlying functions as the CLI subcommands (`
 #### Scenario: Single entry point
 - **WHEN** the read logic changes (e.g., new YouTube handling)
 - **THEN** both `ddg read` and MCP `web_read` reflect the change without separate updates
+
+### Requirement: Startup logging
+When the MCP server starts, `ddg` SHALL write one line to stderr containing the binary name, version, and active transport. The line SHALL be written before the server begins serving. Nothing SHALL be written to stdout for startup logging.
+
+#### Scenario: stdio startup log
+- **WHEN** `ddg --mcp` is invoked
+- **THEN** stderr receives a single line naming `ddg`, the running version, and the `stdio` transport
+
+#### Scenario: HTTP startup log with port
+- **WHEN** `ddg --mcp-http 8080` is invoked
+- **THEN** stderr receives a single line naming `ddg`, the running version, the `http` transport, and the resolved listen address `:8080`
+
+#### Scenario: stdout stays clean
+- **WHEN** `ddg --mcp` is invoked
+- **THEN** stdout carries no startup log output, preserving the MCP JSON-RPC channel

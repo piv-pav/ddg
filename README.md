@@ -70,6 +70,9 @@ Exposes two tools:
 - `web_search(query, limit)` — structured DuckDuckGo results
 - `web_read(url)` — fetch and convert a URL to markdown
 
+On startup, the server logs its name, version, and transport (plus the listen
+address for HTTP) to stderr.
+
 ### Upgrade
 
 ```bash
