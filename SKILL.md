@@ -37,6 +37,10 @@ ddg read URL [--json]
 
 Fetches page, cleans with go-readability, converts to markdown.
 
+YouTube URLs return a transcript (channel, title, duration, date, clean text).
+Reddit post URLs return the post (title, subreddit, author, score, body) and
+threaded comments — no auth, no stored cookies.
+
 **Example:**
 ```bash
 ddg read https://go.dev/doc/effective_go
@@ -63,3 +67,4 @@ URL
 - Supports proxy via `HTTP_PROXY`/`HTTPS_PROXY` env vars
 - Retry logic with exponential backoff (3 attempts)
 - Search uses DuckDuckGo HTML interface (no API key needed)
+- Reddit posts: solves Reddit's JS challenge in-process; atomic per read, no authentication or stored cookies. Subreddit listings/profiles are not supported (posts only).

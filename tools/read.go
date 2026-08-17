@@ -38,6 +38,21 @@ func ReadCmd() *cobra.Command {
 						Transcript: info.Transcript,
 					})
 				}
+				if postID, ok := parseRedditURL(targetURL); ok {
+					info, err := fetchReddit(cmd.Context(), postID)
+					if err != nil {
+						return fmt.Errorf("could not retrieve Reddit post: %w", err)
+					}
+					return printJSON(redditJSON{
+						URL:       targetURL,
+						Title:     info.Title,
+						Subreddit: info.Subreddit,
+						Author:    info.Author,
+						Score:     info.Score,
+						Body:      info.Body,
+						Comments:  info.Comments,
+					})
+				}
 			}
 
 			content, err := readURL(cmd.Context(), targetURL)
@@ -69,6 +84,14 @@ func readURL(ctx context.Context, targetURL string) (string, error) {
 			return "", fmt.Errorf("could not retrieve transcript: %w", err)
 		}
 		return formatYouTubeMarkdown(info), nil
+	}
+
+	if postID, ok := parseRedditURL(targetURL); ok {
+		info, err := fetchReddit(ctx, postID)
+		if err != nil {
+			return "", fmt.Errorf("could not retrieve Reddit post: %w", err)
+		}
+		return formatRedditMarkdown(info), nil
 	}
 
 	content, err := fetchAndConvert(ctx, targetURL)

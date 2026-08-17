@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0] - 2026-08-18
+
+### Added
+- Reddit post support: `ddg read <reddit-url>` returns the post (title, subreddit, author, score, body) and threaded comments as markdown; `--json` returns a structured object
+- Solves Reddit's interstitial JS challenge in-process (no browser, no auth, no stored cookies); each read is atomic with a fresh in-memory cookie jar discarded on return
+- URL shapes: `reddit.com/r/<sub>/comments/<id>/<slug>/`, `/comments/<id>/`, `redd.it/<id>`, and `www`/`old`/`np`/`new` host variants
+
 ## [0.5.2] - 2026-08-16
 
 ### Added

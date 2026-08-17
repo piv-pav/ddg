@@ -7,6 +7,7 @@ DuckDuckGo search and web fetch CLI tool.
 - Search DuckDuckGo with customizable result limits
 - Fetch and convert web pages to clean markdown (uses go-readability for content extraction)
 - Fetch YouTube video transcripts with SponsorBlock filtering (channel, title, duration, date, clean transcript)
+- Fetch Reddit posts and comment threads (title, subreddit, author, score, body, threaded comments) — no auth, no stored cookies
 - Run as an MCP server (`--mcp` stdio / `--mcp-http <port>` StreamableHTTP) exposing `web_search` and `web_read` tools
 
 ## Installation
@@ -55,6 +56,19 @@ ddg read https://www.youtube.com/watch?v=dQw4w9WgXcQ
 Returns the channel, title, duration, publish date, and a clean native-language
 transcript. Sponsor/intro/outro/self-promo segments are removed via SponsorBlock
 and marked inline as `[removed: <category>]`.
+
+### Fetch a Reddit post
+
+```bash
+ddg read https://www.reddit.com/r/golang/comments/<id>/<slug>/
+```
+
+Returns the post (title, subreddit, author, score, body) and its threaded
+comments as markdown; add `--json` for a structured object. Reddit serves an
+interstitial JavaScript challenge to non-browser clients; ddg solves it
+in-process. Each read is atomic — no authentication, no stored cookies, no
+session state between reads. Recognized URL shapes: `.../comments/<id>/<slug>/`,
+`/comments/<id>/`, `redd.it/<id>`, and `www`/`old`/`np`/`new` host variants.
 
 ### Run as an MCP server
 
